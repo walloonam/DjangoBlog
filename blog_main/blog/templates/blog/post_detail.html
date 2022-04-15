@@ -19,8 +19,8 @@
 
         <hr>
 {%  if user.is_authenticated %}
-        {% if user.is_superuser or user.is_staff %}
-            <a class="btn btn-info btn-sm float-right" href="/blog/update_post/" role="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;Update Post</a>
+        {% if user == post.author %}
+            <a class="btn btn-info btn-sm float-right" href="/blog/update_post/{{ post.pk }}" role="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;Update Post</a>
 
         {% endif %}
     {% endif %}
