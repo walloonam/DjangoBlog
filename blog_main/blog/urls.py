@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:pk>/', views.PostDetail.as_view()),
     # path('', views.index),
     path('category/<str:slug>/', views.categories_page),
-    path('tag/<str:slug>', views.show_tag_posts)
+    path('tag/<str:slug>', views.show_tag_posts),
+    path('<int:pk>/new_comment/', views.new_comment),
 ]
