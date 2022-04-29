@@ -5,6 +5,8 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -16,6 +18,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return f'/blog/category/{self.slug}/'
+
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -33,7 +36,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title=models.CharField(max_length=30)
-    content=models.TextField()
+    content=MarkdownxField()
 
     hook_msg = models.TextField(blank=True)
 
@@ -56,3 +59,6 @@ class Post(models.Model):
 
     def get_file_name(self):
         return os.path.basename(self.file_upload.name)
+
+    def get_content_markdown(self):
+        return markdown(self.content)

@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %} Update post-blog{% endblock %}
 {% block main_area %}
     <h1>Update Post</h1>
@@ -9,10 +9,10 @@
 
     <form method="Post" enctype="multipart/form-data">{% csrf_token %}
         <table>
-            {{ form }}
+            {{ form | crispy }}
         </table>
         <button type="submit" class="btn btn-primary float-right">Submit</button>
 
     </form>
-
+    {{ form.media }}
 {% endblock %}

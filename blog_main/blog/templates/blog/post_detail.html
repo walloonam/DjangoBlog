@@ -46,6 +46,8 @@
 
 
           {% endif %}
+
+          <p>{{ post.get_content_markdown | safe }}</p>
           <hr>
           {% if post.tags.exists %}
               <br/>

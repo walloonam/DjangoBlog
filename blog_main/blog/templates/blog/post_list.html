@@ -28,19 +28,19 @@
                 {% if p.hook_msg %}
                     <p class="card-text">{{ p.hook_msg }}</p>
                 {% else %}
-                    <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+                    <p class="card-text">{{ p.get_content_markdown | truncatewords_html:45 | safe }}</p>
                 {% endif %}
                 <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                 {% if p.tags.exists %}
                     <br/>
                     <i class="fas fa-fags"></i>
                     {% for tag in p.tags.iterator %}
-                        <a href = {{ tag.get_absolute.url }}>{{ tag }}<a/>
+                        <a href = {{ tag.get_absolute.url }}>{{ tag }}</a>
                     {% endfor %}
                     <br/>
                     <br/>
-                {% endif  %}
-            </div>
+                     {% endif  %}
+                </div>
             <div class="card-footer text-muted">
                 Posted on {{ p.created_at }} by
                 <a href="#">{{ p.author }}</a>
